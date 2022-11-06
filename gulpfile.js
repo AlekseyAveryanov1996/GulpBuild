@@ -4,11 +4,13 @@ const rename = require('gulp-rename')
 const cleanCSS = require('gulp-clean-css')
 const uglify = require("gulp-uglify")
 const concat = require('gulp-concat')
-const autoprefixer = require('gulp-autoprefixer');
+const autoprefixer = require('gulp-autoprefixer')
 const imagemin = require('gulp-imagemin')
 const newer = require('gulp-newer')
-const fileinclude = require('gulp-file-include');
-const browserSync = require('browser-sync').create();
+const fileinclude = require('gulp-file-include')
+const browserSync = require('browser-sync').create()
+const webpack = require('webpack')
+const webpackStream = require('webpack-stream')
 const del = require('del')
 
 
@@ -78,7 +80,13 @@ function scripts() {
         sourcemaps: true,
     })
     .pipe(uglify()) // плагин для минификации
-    .pipe(concat('main.min.js'))
+    .pipe(webpackStream({
+        mode: 'development',
+        output: {
+            filename: 'main.min.js'
+        }
+    }))
+    //.pipe(concat('main.min.js'))
     .pipe(gulp.dest(paths.scripts.dest)) // сохраняем в папку указываем куда это будет сохраняться
     .pipe(browserSync.stream());
 }
