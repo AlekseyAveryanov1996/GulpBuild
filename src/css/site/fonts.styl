@@ -1,0 +1,26 @@
+font-url(file)
+  return 'fonts/' + file
+
+webfont(family, file, weight, style)
+  @font-face
+    font-family family
+    src url(font-url(file + '.ttf')) format('truetype')
+    font-weight weight
+    font-style style
+    font-display swap
+
+
+webfont(ProximaNova, proxima-nova-light, 300, normal)
+webfont(ProximaNova, proxima-nova-regular, 400, normal)
+webfont(ProximaNova, proxima-nova-semibold, 600, normal)
+webfont(ProximaNova, proxima-nova-bold, 700, normal)
+
+
+
+
+
+
+
+
+
+

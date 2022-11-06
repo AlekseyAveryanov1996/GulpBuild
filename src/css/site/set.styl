@@ -1,0 +1,77 @@
+// Resolution
+xBase = 1921
+base = 1850
+wide = 1600
+screen = 1420
+desktop = 1300
+tabletLarge = 1200
+tablet = 980
+mobile = 765
+sMobile = 660
+
+// @media
+max(size)
+  @media all and (max-width: size px)
+    {block}
+min(size)
+  @media all and (min-width: size px)
+    {block}
+between(sizefrom, sizeto)
+  @media(min-width: sizefrom px) and (max-width: sizeto px)  
+    {block}
+
+max_phone(width,height)
+  @media (min-width: mobile px) and (max-height: height px)
+    {block}
+  @media all and (max-width: width px)
+    {block}
+
+noUserSelect()
+  -webkit-user-select none
+  -moz-user-select none
+  -ms-user-select none
+
+//transition time
+  $trans = .2s ease
+
+// Colors
+_c1 = #000000
+_c2 = #2E2E2E
+_c3 = #FFFFFF
+_c4 = #F3F3F1
+_c5 = #FF4E51
+
+
+
+
+// Path
+link(file)
+  return url(/img/file)
+
+// SVG fix
+svg
+  transform translate3d(0,0,0)
+
+// Placeholder
+ph(opt,val)
+  &::-webkit-input-placeholder
+    {opt} val
+  &::-moz-placeholder
+    {opt} val
+  &:-moz-placeholder
+    {opt} val
+  &::placeholder
+    {opt} val
+  &:-ms-input-placeholder
+    {opt} val
+
+#map
+  [class$='-copyrights-pane']
+    opacity 0
+    pointer-events none
+#ctrlcopy
+  color transparent
+  height 1px
+  overflow hidden
+  position absolute
+  width 1px

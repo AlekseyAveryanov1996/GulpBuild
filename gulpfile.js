@@ -15,7 +15,8 @@ const del = require('del')
 const paths = {
     styles: {
         src: 'src/css/*.styl',
-        dest: 'dist/css/'
+        dest: 'dist/css/',
+        warther: 'src/css/**/*.styl'
     },
     scripts: {
         src: 'src/scripts/**/*.js',
@@ -108,7 +109,7 @@ function watch() {
         },
     });
     gulp.watch(paths.html.watcher).on('change', browserSync.reload) // отслеживать html при изменении
-    gulp.watch(paths.styles.src, styles) // указываем где отслеживаем изменения и какую задачу выполняем
+    gulp.watch(paths.styles.warther, styles) // указываем где отслеживаем изменения и какую задачу выполняем
     gulp.watch(paths.scripts.src, scripts) // указываем где отслеживаем изменения и какую задачу выполняем
     gulp.watch(paths.images.src, img) // указываем где отслеживаем изменения и какую задачу выполняем
     gulp.watch(paths.html.watcher, html) // указываем где отслеживаем изменения и какую задачу выполняем
