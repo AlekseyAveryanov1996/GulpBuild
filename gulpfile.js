@@ -11,6 +11,7 @@ const fileinclude = require('gulp-file-include')
 const browserSync = require('browser-sync').create()
 const webpack = require('webpack')
 const webpackStream = require('webpack-stream')
+const svgSprite = require('gulp-svg-sprite');
 const del = require('del')
 
 
@@ -36,6 +37,10 @@ const paths = {
     fonts: {
         src: 'src/fonts/*',
         dest: 'dist/fonts/'
+    },
+    svg: {
+        src: 'src/svg/*.svg',
+        dest: 'dist/svg/'
     }
 }
 
@@ -102,6 +107,18 @@ function img() {
     .pipe(gulp.dest(paths.images.dest))
 }
 
+function sprite() {
+    return gulp.src(paths.svg.src)
+        .pipe(svgSprite({
+            mode: {
+                stack: {
+                    sprite: "../sprite.svg"  //sprite file name
+                }
+            },
+        }))
+        .pipe(gulp.dest(paths.svg.dest));
+}
+
 // Задача для Шрифтов
 
 function fonts() {
@@ -122,9 +139,10 @@ function watch() {
     gulp.watch(paths.images.src, img) // указываем где отслеживаем изменения и какую задачу выполняем
     gulp.watch(paths.html.watcher, html) // указываем где отслеживаем изменения и какую задачу выполняем
     gulp.watch(paths.fonts.src, fonts) // указываем где отслеживаем изменения и какую задачу выполняем
+    //gulp.watch(paths.svg.src, sprite) // указываем где отслеживаем изменения и какую задачу выполняем
 }
 
-const build = gulp.series(clean, gulp.parallel(html,fonts, styles, scripts, img), watch) // Финальный билд
+const build = gulp.series(clean, gulp.parallel(html,fonts, styles, scripts, img, sprite), watch) // Финальный билд
 
 
 exports.clean = clean

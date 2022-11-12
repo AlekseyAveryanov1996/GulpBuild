@@ -1,4 +1,6 @@
 /node_modules
 /dist
 /src/images
+/src/fonts
+/src/svg
 package-lock.json
